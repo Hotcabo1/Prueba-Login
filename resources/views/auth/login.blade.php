@@ -38,11 +38,36 @@
                         {{ __('¿Olvidaste tu contraseña?') }}
                     </a>
                 @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Iniciar Sesión') }}
-                </x-jet-button>
             </div>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col text-center">
+
+                        <x-jet-button class="ml-4">
+                            {{ __('Iniciar Sesión') }}
+                        </x-jet-button>
+
+
+                            @if (Route::has('login'))
+                                    @auth
+                                        {{-- <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Tablero</a> --}}
+                                    @else
+
+                                        @if (Route::has('register'))
+                                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Registrarse</a>
+                                        @endif
+                                    @endauth
+                            @endif
+
+                    </div>
+                </div>
+            </div>
+
+
         </form>
+
     </x-jet-authentication-card>
+
+
 </x-guest-layout>

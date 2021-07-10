@@ -51,9 +51,23 @@ use Illuminate\Support\Facades\Route;
 //     return '<h1>El usuario es: '.$usuario.' </h1>';
 // })->where('usuario','[0-9]+');
 
+
+
+
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
+// Route::get('/', function () {
+//     return view('auth.register');
+// });
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
