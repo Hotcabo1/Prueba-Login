@@ -20,17 +20,19 @@ use Composer\Semver\VersionParser;
 
 
 
+
+
 class InstalledVersions
 {
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'dde3c8161637802bff3703dd47c871ef406f429e',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -509,12 +511,12 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'dde3c8161637802bff3703dd47c871ef406f429e',
     ),
     'laravel/sail' => 
     array (
@@ -1419,7 +1421,6 @@ foreach (self::getInstalled() as $installed) {
 $packages[] = array_keys($installed['versions']);
 }
 
-
 if (1 === \count($packages)) {
 return $packages[0];
 }
@@ -1583,9 +1584,23 @@ return $installed[0]['root'];
 
 
 
+
 public static function getRawData()
 {
+@trigger_error('getRawData only returns the first dataset loaded, which may not be what you expect. Use getAllRawData() instead which returns all datasets for all autoloaders present in the process.', E_USER_DEPRECATED);
+
 return self::$installed;
+}
+
+
+
+
+
+
+
+public static function getAllRawData()
+{
+return self::getInstalled();
 }
 
 
@@ -1611,6 +1626,7 @@ public static function reload($data)
 self::$installed = $data;
 self::$installedByVendor = array();
 }
+
 
 
 
