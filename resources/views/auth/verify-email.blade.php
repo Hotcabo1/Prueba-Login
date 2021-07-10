@@ -35,3 +35,4 @@
         </div>
     </x-jet-authentication-card>
 </x-guest-layout>
+
