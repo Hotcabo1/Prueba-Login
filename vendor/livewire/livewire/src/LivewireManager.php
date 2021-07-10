@@ -155,7 +155,7 @@ class LivewireManager
     {
         $debug = config('app.debug');
 
-        $styles = $this->cssAssets();
+        $styles = $this->cssAssets($options);
 
         // HTML Label.
         $html = $debug ? ['<!-- Livewire Styles -->'] : [];
@@ -181,10 +181,12 @@ class LivewireManager
         return implode("\n", $html);
     }
 
-    protected function cssAssets()
+    protected function cssAssets($options = [])
     {
+        $nonce = isset($options['nonce']) ? "nonce=\"{$options['nonce']}\"" : '';
+
         return <<<HTML
-<style>
+<style {$nonce}>
     [wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid] {
         display: none;
     }
@@ -272,7 +274,7 @@ HTML;
         // because it will be minified in production.
         return <<<HTML
 {$assetWarning}
-<script src="{$fullAssetPath}" data-turbo-eval="false" data-turbolinks-eval="false"></script>
+<script src="{$fullAssetPath}" data-turbo-eval="false" data-turbolinks-eval="false"{$nonce}></script>
 <script data-turbo-eval="false" data-turbolinks-eval="false"{$nonce}>
     {$windowLivewireCheck}
 
@@ -291,7 +293,7 @@ HTML;
 
     let started = false;
 
-    window.addEventListener('alpine:initializing', () => {
+    window.addEventListener('alpine:initializing', function () {
         if (! started) {
             window.livewire.start();
 

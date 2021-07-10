@@ -5,7 +5,7 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Esta es una area segura para la apliaccion. Porfavor confima yu contraseña antes de continuar') }}
+            {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
         </div>
 
         <x-jet-validation-errors class="mb-4" />
@@ -20,7 +20,7 @@
 
             <div class="flex justify-end mt-4">
                 <x-jet-button class="ml-4">
-                    {{ __('Confirmar') }}
+                    {{ __('Confirm') }}
                 </x-jet-button>
             </div>
         </form>
