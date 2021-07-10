@@ -15,8 +15,10 @@ class CreateCrsIncidencias extends Migration
     {
         Schema::create('crs_incidencias', function (Blueprint $table) {
             //Crear campo para incidencias
-            $table->string('DesIncidencias',255);      
-               
+
+            $table->id();
+            $table->string('DesIncidencias',255);
+            $table->string('fotografia',200);   
             $table->timestamps();
         });
     }
